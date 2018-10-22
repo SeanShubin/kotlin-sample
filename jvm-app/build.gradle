@@ -1,0 +1,20 @@
+apply plugin: "kotlin"
+
+
+dependencies {
+    compile project(":jvm-backend")
+    compile libraries.kotlin_stdlib
+}
+
+task run(dependsOn: classes, type: JavaExec) {
+    main = "jvm.JvmAppKt"
+    classpath = sourceSets.main.runtimeClasspath
+    ignoreExitValue(true)
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.seanshubin.kotlin.sample.jvm.app.MainKt'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
