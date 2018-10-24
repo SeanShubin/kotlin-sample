@@ -4,6 +4,7 @@ apply plugin: "com.moowork.node"
 archivesBaseName = "kotlin-sample-js-frontend"
 
 dependencies {
+    expectedBy project(":common-generic")
     expectedBy project(":common-frontend")
     compile libraries.kotlin_stdlib_js
     testCompile libraries.kotlin_test_js
